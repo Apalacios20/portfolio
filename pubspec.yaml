@@ -7,6 +7,12 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  get: ^4.6.5
+  url_launcher: ^6.2.3
+  google_fonts: ^5.1.0
+  font_awesome_flutter: ^10.7.0
+  flutter_svg: ^2.0.10+1
+  emailjs: ^4.0.0
   flutter:
     sdk: flutter
 
@@ -16,4 +22,6 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+  assets:
+      - assets/
   uses-material-design: true
