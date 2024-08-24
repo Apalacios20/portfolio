@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:myportfolio/pages/controller.dart';
-// import 'package:myportfolio/pages/views/default_view.dart';
-// import 'package:myportfolio/pages/views/projects_skills_view.dart';
-// import 'package:myportfolio/widgets/contact_form_dialog.dart';
-// import 'package:myportfolio/widgets/contact_form_textfield.dart';
-// import 'package:myportfolio/widgets/home_icons.dart';
 import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/pages/views/default_view.dart';
 import 'package:portfolio/pages/views/projects_skills_view.dart';
@@ -23,41 +16,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final MainController controller = Get.put(MainController());
-  // RxString _currentView = 'default'.obs;
 
   Widget _getView(String view) {
+    Widget newView;
     switch (view) {
       case 'portfolio':
-        return ProjectsAndSkillsView(controller: controller);
+        newView = ProjectsAndSkillsView(controller: controller);
+        break;
       default:
-        return DefaultView(controller: controller);
+        newView = DefaultView(controller: controller);
     }
+
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 650),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+      child: newView,
+    );
   }
-
-  // Widget _getView(String view) {
-  //   switch (view) {
-  //     case 'default':
-  //       return DefaultView();
-  //     case 'Projects / Skills':
-  //     // return portfolioView();
-  //     // case 'Contact':
-  //     //   return ContactView();
-  //     // case 'Home':
-  //     default:
-  //       return DefaultView();
-  //   }
-  // }
-
-  // void _changeView(String view) {
-  //   // setState(() {
-  //   _currentView.value = view;
-  //   // });
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: make the content of the container bottom center due to scrolling issue
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -82,8 +63,6 @@ class _HomeState extends State<Home> {
         ),
         child: Column(
           children: [
-            // Could add other links to different sections of the app
-            // May just change the entire set up and stay on 1 screen and change ui
             Row(
               children: [
                 Expanded(
@@ -91,7 +70,6 @@ class _HomeState extends State<Home> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Icon(Icons.electric_bolt),
                       const SizedBox(
                         width: 20,
                       ),
@@ -134,17 +112,18 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           )),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'About',
-                            style: GoogleFonts.titilliumWeb(
-                              textStyle: const TextStyle(
-                                fontSize: 21,
-                                color: Colors.black,
-                              ),
-                            ),
-                          )),
+                      // AP20 comment back in when ready
+                      // TextButton(
+                      //     onPressed: () {},
+                      //     child: Text(
+                      //       'About',
+                      //       style: GoogleFonts.titilliumWeb(
+                      //         textStyle: const TextStyle(
+                      //           fontSize: 21,
+                      //           color: Colors.black,
+                      //         ),
+                      //       ),
+                      //     )),
                       TextButton(
                           onPressed: () => controller.changeView('portfolio'),
                           child: Text(
@@ -157,8 +136,12 @@ class _HomeState extends State<Home> {
                             ),
                           )),
                       TextButton(
-                          onPressed: () async =>
-                              await Get.dialog(const ContactDialog()),
+                          onPressed: () => Future.delayed(
+                                const Duration(milliseconds: 300),
+                                () async {
+                                  await Get.dialog(const ContactDialog());
+                                },
+                              ),
                           child: Text(
                             'Contact',
                             style: GoogleFonts.titilliumWeb(
@@ -200,11 +183,9 @@ class _HomeState extends State<Home> {
                     ))
               ],
             ),
-            // AP20 ABOVE IS THE SEARCH BAR AT TOP
             const SizedBox(
               height: 70,
             ),
-            // AP20 TOP OF THE WHITE PAPER
             Expanded(
               child: Container(
                 height: MediaQuery.of(context).size.height * .75,
@@ -228,8 +209,6 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                // AP20 START OF THE CHANGING OF VIEWS IN THE PAPER
-                // child: DefaultView(),
                 child: Obx(() => _getView(controller.currentView.value)),
               ),
             ),
@@ -239,17 +218,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-// skills, projects, contact me
-// Flutter, React.js, Typescript, Firebase, Postgresql, Python, Jira
-
-// left off:
-// get contact form finished at the bottom of the screen

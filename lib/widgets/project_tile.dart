@@ -12,8 +12,8 @@ class ProjectTile extends StatefulWidget {
     required this.title,
     required this.description,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   ProjectTileState createState() => ProjectTileState();

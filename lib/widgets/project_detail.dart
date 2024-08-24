@@ -37,15 +37,15 @@ class ProjectDetail extends StatelessWidget {
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
                   icon: const Icon(Icons.arrow_back),
                   onPressed: onBack,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
                 // AP20 make this text dynamic
                 const Row(
                   children: [

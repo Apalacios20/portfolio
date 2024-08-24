@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/widgets/job_content.dart';
+import 'package:portfolio/pages/controller.dart';
+import 'package:portfolio/widgets/job_detail.dart';
 
-class JobTileWidget extends StatefulWidget {
+class JobTile extends StatefulWidget {
+  final MainController controller;
   final String positionHeldAtCompany;
   final String yearsWorkedAtCo;
   final String jobLocation;
@@ -11,7 +13,8 @@ class JobTileWidget extends StatefulWidget {
   final List<String> skills;
   final String imageName;
 
-  const JobTileWidget({
+  const JobTile({
+    required this.controller,
     required this.positionHeldAtCompany,
     required this.yearsWorkedAtCo,
     required this.jobLocation,
@@ -23,11 +26,10 @@ class JobTileWidget extends StatefulWidget {
   });
 
   @override
-  State<JobTileWidget> createState() => _JobTileWidgetState();
+  State<JobTile> createState() => _JobTileState();
 }
 
-class _JobTileWidgetState extends State<JobTileWidget>
-    with SingleTickerProviderStateMixin {
+class _JobTileState extends State<JobTile> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   RxBool isDetailVisible = false.obs;
@@ -36,12 +38,12 @@ class _JobTileWidgetState extends State<JobTileWidget>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
     _animation = CurvedAnimation(
       parent: _animationController,
-      curve: Curves.linear,
+      curve: Curves.ease,
     );
   }
 
@@ -73,13 +75,12 @@ class _JobTileWidgetState extends State<JobTileWidget>
             decoration: BoxDecoration(
               color: Colors.blueGrey[600],
               borderRadius: BorderRadius.circular(12.0),
-              // AP20 new
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Shadow color
-                  spreadRadius: 1, // Spread radius
-                  blurRadius: 5, // Blur radius
-                  offset: Offset(0, 3), // Shadow position
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -115,7 +116,8 @@ class _JobTileWidgetState extends State<JobTileWidget>
             height: 5,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 155.0),
+            padding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width * .09),
             child: SizeTransition(
               sizeFactor: _animation,
               axisAlignment: -1.0,
@@ -128,12 +130,13 @@ class _JobTileWidgetState extends State<JobTileWidget>
                     : EdgeInsets.zero,
                 decoration: BoxDecoration(
                   color: isDetailVisible.value
-                      ? Colors.orange[800]!.withOpacity(0.2)
+                      ? Colors.transparent
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: isDetailVisible.value
-                    ? JobContent(
+                    ? JobDetail(
+                        controller: widget.controller,
                         jobLocation: widget.jobLocation,
                         jobWebsite: widget.jobWebsite,
                         jobDescription: widget.jobDescription,

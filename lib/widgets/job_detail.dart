@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/widgets/buttons/skill_null_btn.dart';
 
-class JobContent extends StatelessWidget {
+class JobDetail extends StatelessWidget {
+  final MainController controller;
   final String jobLocation;
   final String? jobWebsite;
   final String jobDescription;
   final List<String> skills;
   final String imageName;
 
-  const JobContent({
+  const JobDetail({
+    required this.controller,
     required this.jobLocation,
     this.jobWebsite,
     required this.jobDescription,
@@ -34,20 +37,27 @@ class JobContent extends StatelessWidget {
                     jobLocation,
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.grey[500],
+                      color: Colors.blueGrey[600],
+                      // color: Colors.grey[500],
                     ),
                   ),
                   const SizedBox(width: 30),
                   if (jobWebsite != null && jobWebsite!.isNotEmpty) ...[
                     const Icon(Icons.blur_on),
                     const SizedBox(width: 10),
-                    Text(
-                      jobWebsite!,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[500],
+                    // AP20 new
+                    TextButton(
+                      onPressed: () =>
+                          controller.goToUrl("https://$jobWebsite"),
+                      child: Text(
+                        jobWebsite!,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.blueGrey[600],
+                          // color: Colors.grey[500],
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ],
               ),
@@ -57,20 +67,29 @@ class JobContent extends StatelessWidget {
                 child: Text(
                   jobDescription,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 17,
                   ),
                 ),
               ),
               const SizedBox(height: 15),
-              Row(
-                children: skills.map((skill) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: SkillNullBtn(text: skill),
-                  );
-                }).toList(),
+              Wrap(
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children:
+                    skills.map((skill) => Chip(label: Text(skill))).toList(),
               ),
+
+              // AP20 og and good
+              // Row(
+              //   children:
+              //   skills.map((skill) {
+              //     return Padding(
+              //       padding: const EdgeInsets.only(right: 10.0),
+              //       child: SkillNullBtn(text: skill),
+              //     );
+              //   }).toList(),
+              // ),
             ],
           ),
         ),

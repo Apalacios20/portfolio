@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:myportfolio/pages/controller.dart';
-// import 'package:myportfolio/widgets/home_icons.dart';
 import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/widgets/home_icons.dart';
 
@@ -35,7 +33,7 @@ class DefaultView extends StatelessWidget {
             ),
           ),
           Text(
-            "Flutter Dev  //  NestJs Dev  //  App Dev",
+            "Flutter Dev  //  NestJS Dev  //  App Dev",
             style: GoogleFonts.gruppo(
               textStyle: const TextStyle(
                 fontSize: 35,
@@ -47,23 +45,17 @@ class DefaultView extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              HomeIcons(imageFileSvg: 'ripple2'),
-              HomeIcons(imageFileSvg: 'dream_catcher'),
-              HomeIcons(imageFileSvg: 'flower_of_life'),
-              HomeIcons(imageFileSvg: 'dead_tree'),
-              HomeIcons(imageFileSvg: 'flare'),
-            ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: controller.iconList
+                .map((icon) => HomeIcons(imageFileSvg: icon))
+                .toList(),
           ),
           const SizedBox(
             height: 100,
           ),
           OutlinedButton(
             onPressed: () => controller.changeView('portfolio'),
-
-            // AP20 dynamic styling?
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsets>(
                 const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),

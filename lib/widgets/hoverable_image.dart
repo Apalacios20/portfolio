@@ -8,14 +8,14 @@ class HoverableImage extends StatefulWidget {
   const HoverableImage({
     required this.imageUrl,
     required this.offset,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _HoverableImageState createState() => _HoverableImageState();
+  HoverableImageState createState() => HoverableImageState();
 }
 
-class _HoverableImageState extends State<HoverableImage> {
+class HoverableImageState extends State<HoverableImage> {
   bool _isHovered = false;
 
   void _showImageModal() {
