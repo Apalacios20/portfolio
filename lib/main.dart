@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/pages/base.dart';
@@ -6,6 +8,16 @@ import 'package:portfolio/pages/base.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+
+  LicenseRegistry.addLicense(() async* {
+    final license1 = await rootBundle.loadString('assets/fonts/OFL1.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license1);
+    final license2 = await rootBundle.loadString('assets/fonts/OFL2.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license2);
+    final license3 = await rootBundle.loadString('assets/fonts/OFL3.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license3);
+  });
+
   runApp(const MainApp());
 }
 

@@ -16,7 +16,7 @@ class ContactFormTextField extends StatelessWidget {
     return TextField(
       minLines: minLines,
       maxLines: maxLines,
-      style: TextStyle(color: Colors.white, fontSize: 15),
+      style: const TextStyle(color: Colors.white, fontSize: 15),
       decoration: InputDecoration(
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),

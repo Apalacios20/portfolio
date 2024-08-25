@@ -33,4 +33,18 @@ flutter:
       - assets/
       - assets/coin_logo.png
       - .env
+      - assets/fonts/
+      
+  fonts:
+    - family: Gruppo
+      fonts:
+        - asset: assets/fonts/Gruppo-Regular.ttf
+
+    - family: ExpletusSans
+      fonts:
+        - asset: assets/fonts/ExpletusSans-VariableFont_wght.ttf
+
+    - family: TitilliumWeb
+      fonts:
+        - asset: assets/fonts/TitilliumWeb-ExtraLight.ttf    
   uses-material-design: true
