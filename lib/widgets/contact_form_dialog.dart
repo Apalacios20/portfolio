@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:emailjs/emailjs.dart' as emailjs;
+import 'package:get/get.dart';
 
 class ContactDialog extends StatefulWidget {
   const ContactDialog({super.key});
@@ -16,10 +17,10 @@ class ContactDialogState extends State<ContactDialog> {
   final _messageController = TextEditingController();
 
   Future<void> sendEmail(String name, String email, String message) async {
-    var serviceId = dotenv.env['EMAILJS_SERVICE_ID']!;
-    var templateId = dotenv.env['EMAILJS_TEMPLATE_ID']!;
-    var publicKey = dotenv.env['EMAILJS_PUBLIC_KEY']!;
-    var privateKey = dotenv.env['EMAILJS_PRIVATE_KEY']!;
+    var serviceId = dotenv.env['EMAILJS_SERVICE_ID'];
+    var templateId = dotenv.env['EMAILJS_TEMPLATE_ID'];
+    var publicKey = dotenv.env['EMAILJS_PUBLIC_KEY'];
+    var privateKey = dotenv.env['EMAILJS_PRIVATE_KEY'];
 
     Map<String, dynamic> templateParams = {
       'from_name': '${_nameController.text}  ${_emailController.text}',
@@ -28,8 +29,8 @@ class ContactDialogState extends State<ContactDialog> {
 
     try {
       await emailjs.send(
-        serviceId,
-        templateId,
+        serviceId!,
+        templateId!,
         templateParams,
         emailjs.Options(
           publicKey: publicKey,
@@ -41,6 +42,7 @@ class ContactDialogState extends State<ContactDialog> {
       );
       debugPrint('EMAIL SUCCESS!');
     } catch (error) {
+      debugPrint('EMAIL DENIED!');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content:
@@ -114,7 +116,10 @@ class ContactDialogState extends State<ContactDialog> {
                 _nameController.text,
                 _emailController.text,
                 _messageController.text,
-              ).then((_) => Navigator.of(context).pop());
+              );
+
+              Get.back();
+              // .then((_) => Navigator.of(context).pop());
             }
           },
           child: const Text('Send'),
