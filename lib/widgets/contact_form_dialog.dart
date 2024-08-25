@@ -18,6 +18,8 @@ class ContactDialogState extends State<ContactDialog> {
   Future<void> sendEmail(String name, String email, String message) async {
     var serviceId = dotenv.env['EMAILJS_SERVICE_ID'];
     var templateId = dotenv.env['EMAILJS_TEMPLATE_ID'];
+    var publicKey = dotenv.env['EMAILJS_PUBLIC_KEY'];
+    var privateKey = dotenv.env['EMAILJS_PRIVATE_KEY'];
 
     Map<String, dynamic> templateParams = {
       'from_name': '${_nameController.text}  ${_emailController.text}',
@@ -29,9 +31,9 @@ class ContactDialogState extends State<ContactDialog> {
         serviceId!,
         templateId!,
         templateParams,
-        const emailjs.Options(
-          publicKey: 'ZE09F4i9pMz6odtV9',
-          privateKey: 'xzAEeAPo8qOOErq0UqN_a',
+        emailjs.Options(
+          publicKey: publicKey,
+          privateKey: privateKey,
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(
@@ -40,7 +42,9 @@ class ContactDialogState extends State<ContactDialog> {
       debugPrint('EMAIL SUCCESS!');
     } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to send email: $error')),
+        SnackBar(
+            content:
+                Text('Failed to send email, serviceId: $serviceId: $error')),
       );
       debugPrint('Error: $error');
     }

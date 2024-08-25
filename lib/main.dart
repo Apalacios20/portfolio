@@ -1,12 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// import 'package:flutter_app_icons/flutter_app_icons.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/pages/base.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // final flutterAppIconsPlugin = FlutterAppIcons();
+  // flutterAppIconsPlugin.setIcon(icon: 'assets/flare.svg');
+
   await dotenv.load(fileName: ".env");
 
   LicenseRegistry.addLicense(() async* {

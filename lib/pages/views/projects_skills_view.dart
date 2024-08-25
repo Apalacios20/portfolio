@@ -156,7 +156,7 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
               jobLocation: 'Twin Falls, Idaho',
               jobWebsite: 'tetherre.com',
               jobDescription:
-                  'Developed a real estate application focused on enhancing the safety of real estate agents. Key achievements include integrating the platform with a 24/7 monitoring center that provides immediate response when safety features are triggered. I have built and maintained all safety features across both the frontend and backend of the platform. I take great pride in my work, especially when accuracy is critical to ensuring user safety.',
+                  'Developed a real estate mobile application designed to enhance the safety of real estate agents. A major achievement includes integrating the platform with a 24/7 monitoring center that delivers immediate responses when safety features are triggered. I’ve built and maintained all safety features on the frontend and the majority on the backend, taking pride in ensuring accuracy and safeguarding users.',
               skills: const [
                 'Flutter',
                 'React',
