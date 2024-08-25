@@ -43,10 +43,6 @@ class ProjectDetail extends StatelessWidget {
                   icon: const Icon(Icons.arrow_back),
                   onPressed: onBack,
                 ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // AP20 make this text dynamic
                 const Row(
                   children: [
                     Text(
@@ -91,7 +87,6 @@ class ProjectDetail extends StatelessWidget {
                   children:
                       skills.map((skill) => Chip(label: Text(skill))).toList(),
                 ),
-                // const SizedBox(height: 16.0),
               ],
             ),
           ),

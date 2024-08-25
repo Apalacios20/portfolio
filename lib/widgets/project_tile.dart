@@ -65,7 +65,7 @@ class ProjectTileState extends State<ProjectTile> {
                             ),
                           )
                         : Image.asset(
-                            widget.imageUrl,
+                            'assets/${widget.imageUrl}',
                             width: double.infinity,
                             height: 260,
                             fit: BoxFit.cover,

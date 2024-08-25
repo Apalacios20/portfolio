@@ -57,18 +57,18 @@ class DefaultView extends StatelessWidget {
           OutlinedButton(
             onPressed: () => controller.changeView('portfolio'),
             style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsets>(
+              padding: WidgetStateProperty.all<EdgeInsets>(
                 const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               ),
-              minimumSize: MaterialStateProperty.all<Size>(const Size(200, 60)),
-              textStyle: MaterialStateProperty.all<TextStyle>(
+              minimumSize: WidgetStateProperty.all<Size>(const Size(200, 60)),
+              textStyle: WidgetStateProperty.all<TextStyle>(
                 const TextStyle(fontSize: 24),
               ),
-              side: MaterialStateProperty.all<BorderSide>(
+              side: WidgetStateProperty.all<BorderSide>(
                 BorderSide(
                     color: Colors.orangeAccent.withOpacity(0.75), width: 2.0),
               ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),

@@ -28,13 +28,15 @@ class HoverableImageState extends State<HoverableImage> {
             children: [
               widget.imageUrl.toLowerCase().endsWith('.svg')
                   ? SvgPicture.asset(
-                      widget.imageUrl,
+                      'assets/${widget.imageUrl}',
+                      // widget.imageUrl,
                       width: 600,
                       height: 600,
                       fit: BoxFit.contain,
                     )
                   : Image.asset(
-                      widget.imageUrl,
+                      'assets/${widget.imageUrl}',
+                      // widget.imageUrl,
                       width: 600,
                       height: 600,
                       fit: BoxFit.contain,
@@ -43,7 +45,7 @@ class HoverableImageState extends State<HoverableImage> {
                 top: 10,
                 right: 10,
                 child: IconButton(
-                  icon: Icon(Icons.close, color: Colors.white),
+                  icon: const Icon(Icons.close, color: Colors.white),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -64,7 +66,7 @@ class HoverableImageState extends State<HoverableImage> {
       child: GestureDetector(
         onTap: _showImageModal,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           transform:
               Matrix4.translationValues(widget.offset.dx, widget.offset.dy, 0),
           decoration: BoxDecoration(
@@ -80,12 +82,14 @@ class HoverableImageState extends State<HoverableImage> {
           ),
           child: widget.imageUrl.toLowerCase().endsWith('.svg')
               ? SvgPicture.asset(
-                  widget.imageUrl,
+                  'assets/${widget.imageUrl}',
+                  // widget.imageUrl,
                   height: 200,
                   fit: BoxFit.contain,
                 )
               : Image.asset(
-                  widget.imageUrl,
+                  'assets/${widget.imageUrl}',
+                  // widget.imageUrl,
                   height: 200,
                   fit: BoxFit.contain,
                 ),

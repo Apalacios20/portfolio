@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +6,6 @@ import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/widgets/job_tile_widget.dart';
 import 'package:portfolio/widgets/project_detail.dart';
 import 'package:portfolio/widgets/project_tile.dart';
-import 'dart:html' as html;
 
 class ProjectsAndSkillsView extends StatefulWidget {
   final MainController controller;
@@ -226,6 +223,7 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ProjectTile(
+                          // AP20 testing
                           imageUrl: "coin_logo.png",
                           title: "Crypto Exchange UI",
                           description: "Web Development",

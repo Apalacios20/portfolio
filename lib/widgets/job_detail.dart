@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/pages/controller.dart';
-import 'package:portfolio/widgets/buttons/skill_null_btn.dart';
 
 class JobDetail extends StatelessWidget {
   final MainController controller;
@@ -38,14 +37,12 @@ class JobDetail extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.blueGrey[600],
-                      // color: Colors.grey[500],
                     ),
                   ),
                   const SizedBox(width: 30),
                   if (jobWebsite != null && jobWebsite!.isNotEmpty) ...[
                     const Icon(Icons.blur_on),
                     const SizedBox(width: 10),
-                    // AP20 new
                     TextButton(
                       onPressed: () =>
                           controller.goToUrl("https://$jobWebsite"),
@@ -54,7 +51,6 @@ class JobDetail extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.blueGrey[600],
-                          // color: Colors.grey[500],
                         ),
                       ),
                     )
@@ -79,17 +75,6 @@ class JobDetail extends StatelessWidget {
                 children:
                     skills.map((skill) => Chip(label: Text(skill))).toList(),
               ),
-
-              // AP20 og and good
-              // Row(
-              //   children:
-              //   skills.map((skill) {
-              //     return Padding(
-              //       padding: const EdgeInsets.only(right: 10.0),
-              //       child: SkillNullBtn(text: skill),
-              //     );
-              //   }).toList(),
-              // ),
             ],
           ),
         ),

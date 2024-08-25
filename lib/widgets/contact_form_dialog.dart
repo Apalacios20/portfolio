@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:emailjs/emailjs.dart' as emailjs;
 
 class ContactDialog extends StatefulWidget {
@@ -18,8 +16,6 @@ class ContactDialogState extends State<ContactDialog> {
   final _messageController = TextEditingController();
 
   Future<void> sendEmail(String name, String email, String message) async {
-    // const serviceId = 'service_sg3xr2u';
-    // const templateId = 'template_nc2kosl';
     var serviceId = dotenv.env['EMAILJS_SERVICE_ID'];
     var templateId = dotenv.env['EMAILJS_TEMPLATE_ID'];
 

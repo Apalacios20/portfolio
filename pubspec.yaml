@@ -18,6 +18,10 @@ dependencies:
   flutter:
     sdk: flutter
   file_saver: ^0.2.14
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
+  firebase_storage: ^11.6.0
 
 dev_dependencies:
   flutter_test:
@@ -27,5 +31,6 @@ dev_dependencies:
 flutter:
   assets:
       - assets/
+      - assets/coin_logo.png
       - .env
   uses-material-design: true
