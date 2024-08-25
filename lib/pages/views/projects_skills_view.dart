@@ -72,7 +72,8 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
         padding: EdgeInsets.fromLTRB(
             0, MediaQuery.of(context).size.height / 15, 0, 30),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
