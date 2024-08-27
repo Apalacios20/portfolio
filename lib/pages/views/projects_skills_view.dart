@@ -118,7 +118,7 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.asset(
                                         'assets/resume.png',
-                                        fit: BoxFit.contain,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
@@ -157,14 +157,14 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
               jobLocation: 'Twin Falls, Idaho',
               jobWebsite: 'tetherre.com',
               jobDescription:
-                  'Developed a real estate mobile application designed to enhance the safety of real estate agents. A major achievement includes integrating the platform with a 24/7 monitoring center that delivers immediate responses when safety features are triggered. I’ve built and maintained all safety features on the frontend and the majority on the backend, taking pride in ensuring accuracy and safeguarding users.',
+                  'Developed and maintained a real estate mobile application on both Android and iOS, designed to enhance the safety of real estate agents.  An achievement includes integrating the platform with a 24/7 monitoring center that delivers immediate response when safety features are triggered.  I’ve contributed to, built, and maintained all the safety features on the frontend and the majority on the backend, taking pride in ensuring accuracy and safeguarding users.',
               skills: const [
                 'Flutter',
                 'React',
                 'JavaScript',
                 'NestJS',
                 'Postgresql',
-                'AWS'
+                'AWS',
               ],
               imageName: "TetherRE.png",
             ),
@@ -174,13 +174,19 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
             JobTile(
               controller: widget.controller,
               positionHeldAtCompany:
-                  'Jr. Flutter Developer / Data Analyst @ ThirtyThree',
+                  'Flutter Developer / Data Analyst @ ThirtyThree',
               yearsWorkedAtCo: '2022 - 2023',
               jobLocation: 'Yorba Linda, California',
               jobWebsite: null,
               jobDescription:
                   'Developed and maintained an application aimed at modernizing the cell tower surveying process, replacing traditional pen-and-paper methods to prioritize efficiency, dependability, and data accuracy.',
-              skills: const ['React', 'JavaScript', 'NestJS', 'Postgresql'],
+              skills: const [
+                'Flutter',
+                'React',
+                'JavaScript',
+                'NestJS',
+                'Postgresql'
+              ],
               imageName: "tangent.png",
             ),
             const SizedBox(
