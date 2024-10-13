@@ -2,10 +2,12 @@ import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/models/project_info.dart';
 import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/widgets/job_tile_widget.dart';
 import 'package:portfolio/widgets/project_detail.dart';
 import 'package:portfolio/widgets/project_tile.dart';
+import 'package:portfolio/widgets/skill_tile.dart';
 
 class ProjectsAndSkillsView extends StatefulWidget {
   final MainController controller;
@@ -25,15 +27,14 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
 
   List<String> projectOneImages = [];
 
-  void _selectCard(List<String> imageUrl, String title, String description,
-      List<String> skills, String? gitUrl) {
+  void _selectCard(ProjectInfo projectInfo) {
     setState(() {
       _isCardSelected = true;
-      _selectedImageUrl = imageUrl;
-      _selectedTitle = title;
-      _selectedDescription = description;
-      _selectedSkills = skills;
-      _projectGitUrl = gitUrl;
+      _selectedImageUrl = projectInfo.imageUrls;
+      _selectedTitle = projectInfo.title;
+      _selectedDescription = projectInfo.description;
+      _selectedSkills = projectInfo.skills;
+      _projectGitUrl = projectInfo.gitUrl;
     });
   }
 
@@ -69,10 +70,13 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.fromLTRB(
-            0, MediaQuery.of(context).size.height / 15, 0, 30),
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
+        ),
+        alignment: Alignment.topCenter,
+        padding: const EdgeInsets.fromLTRB(0, 60, 0, 30),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
@@ -93,53 +97,53 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: const Text('Resume'),
-                          content: SingleChildScrollView(
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 725,
-                                    height: 825,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.25),
-                                          spreadRadius: 5,
-                                          blurRadius: 10,
-                                          offset: const Offset(0, 5),
+                            title: const Text('Resume'),
+                            content: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 725,
+                                      height: 1325,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.25),
+                                            spreadRadius: 5,
+                                            blurRadius: 10,
+                                            offset: const Offset(0, 5),
+                                          ),
+                                        ],
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          'assets/resume.png',
+                                          fit: BoxFit.cover,
                                         ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        'assets/resume.png',
-                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  ElevatedButton(
-                                    onPressed: _downloadFile,
-                                    child: const Text('Download Resume'),
-                                  ),
-                                ],
+                                    const SizedBox(height: 20),
+                                    ElevatedButton(
+                                      onPressed: _downloadFile,
+                                      child: const Text('Download Resume'),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Close'),
-                            ),
-                          ],
-                        );
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ]);
                       },
                     );
                   },
@@ -150,45 +154,23 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
             const SizedBox(
               height: 45,
             ),
-            JobTile(
-              controller: widget.controller,
-              positionHeldAtCompany: 'Flutter and NestJS Developer @ Tether RE',
-              yearsWorkedAtCo: '2023 - Present',
-              jobLocation: 'Twin Falls, Idaho',
-              jobWebsite: 'tetherre.com',
-              jobDescription:
-                  'Developed and maintained a real estate mobile application on both Android and iOS, designed to enhance the safety of real estate agents.  An achievement includes integrating the platform with a 24/7 monitoring center that delivers immediate response when safety features are triggered.  I’ve contributed to, built, and maintained all the safety features on the frontend and the majority on the backend, taking pride in ensuring accuracy and safeguarding users.',
-              skills: const [
-                'Flutter',
-                'React',
-                'JavaScript',
-                'NestJS',
-                'Postgresql',
-                'AWS',
-              ],
-              imageName: "TetherRE.png",
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            JobTile(
-              controller: widget.controller,
-              positionHeldAtCompany:
-                  'Flutter Developer / Data Analyst @ ThirtyThree',
-              yearsWorkedAtCo: '2022 - 2023',
-              jobLocation: 'Yorba Linda, California',
-              jobWebsite: null,
-              jobDescription:
-                  'Developed and maintained an application aimed at modernizing the cell tower surveying process, replacing traditional pen-and-paper methods to prioritize efficiency, dependability, and data accuracy.',
-              skills: const [
-                'Flutter',
-                'React',
-                'JavaScript',
-                'NestJS',
-                'Postgresql'
-              ],
-              imageName: "tangent.png",
-            ),
+            for (var i = 0; i < widget.controller.jobList.length; i++) ...[
+              JobTile(
+                controller: widget.controller,
+                positionHeldAtCompany:
+                    widget.controller.jobList[i].positionHeldAtCompany,
+                yearsWorkedAtCo: widget.controller.jobList[i].yearsWorkedAtCo,
+                jobLocation: widget.controller.jobList[i].jobLocation,
+                jobWebsite: widget.controller.jobList[i].jobWebsite,
+                jobDescription: widget.controller.jobList[i].jobDescription,
+                skills: widget.controller.jobList[i].skills,
+                imageName: widget.controller.jobList[i].imageName,
+              ),
+              if (i != widget.controller.jobList.length - 1)
+                const SizedBox(
+                  height: 5,
+                ),
+            ],
             const SizedBox(
               height: 45,
             ),
@@ -229,39 +211,54 @@ class _ProjectsAndSkillsViewState extends State<ProjectsAndSkillsView> {
                       key: ValueKey('ProjectTiles'),
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ProjectTile(
-                          // AP20 testing
-                          imageUrl: "coin_logo.png",
-                          title: "Crypto Exchange UI",
-                          description: "Web Development",
-                          onTap: () => _selectCard(
-                              ["coinx_main.png", "coinx_detail.png"],
-                              "Crypto Exchange UI",
-                              "I have a keen interest in cryptocurrencies, which led me to develop the user interface of a crypto exchange inspired by Uphold. This project involved leveraging the CoinMarketCap API to provide accurate and real-time data feeds. I built the frontend using Flutter to ensure a responsive and seamless user experience. For the backend, I utilized Go to efficiently process the data feeds and manage the exchange operations.",
-                              ["Flutter", "Golang", "API Interaction"],
-                              "https://github.com/Apalacios20/crypto-exchange-ui"),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
-                        ProjectTile(
-                          imageUrl: "flare.svg",
-                          title: "Flare Network API",
-                          description: "Web Development",
-                          onTap: () => _selectCard(
-                              ["flare.svg", "ripple2.svg"],
-                              "Flare Network API (Coming Soon)",
-                              "The first step of my project is to verify wallet addresses across all chains supported by the Flare Network. This process utilizes the Flare Network API to seamlessly validate and interact with wallet addresses. Following this, the project will incorporate real-time data feeds from all chains on Flare, as well as smart contract integration to enhance functionality and security.",
-                              [
-                                "Flutter",
-                                "NestJS",
-                                "Solidity",
-                                "Flare API Interaction"
-                              ],
-                              null),
-                        ),
+                        for (var i = 0;
+                            i < widget.controller.projectList.length;
+                            i++) ...[
+                          ProjectTile(
+                            imageUrl: widget.controller.projectList[i].imageUrl,
+                            title: widget.controller.projectList[i].title,
+                            projectType:
+                                widget.controller.projectList[i].projectType,
+                            onTap: () => _selectCard(
+                              widget.controller.projectList[i],
+                            ),
+                          ),
+                          if (i != widget.controller.projectList.length - 1)
+                            const SizedBox(
+                              width: 25,
+                            ),
+                        ],
                       ],
                     ),
+            ),
+            const SizedBox(
+              height: 45,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Skills",
+                style:
+                    GoogleFonts.titilliumWeb(fontSize: 35, color: Colors.black),
+              ),
+            ),
+            const SizedBox(
+              height: 45,
+            ),
+            Wrap(
+              spacing: 15.0,
+              alignment: WrapAlignment.center,
+              children: widget.controller.skillsIconList.map((skill) {
+                String skillName = skill.imagePath.replaceAll('.png', '');
+                String capitalizedSkill =
+                    skillName[0].toUpperCase() + skillName.substring(1);
+
+                return SkillTile(
+                  skillName: capitalizedSkill,
+                  imagePath: skill.imagePath,
+                  docLink: skill.docLink,
+                );
+              }).toList(),
             ),
           ],
         ),

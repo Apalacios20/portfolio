@@ -16,7 +16,8 @@ class ContactDialogState extends State<ContactDialog> {
   final _emailController = TextEditingController();
   final _messageController = TextEditingController();
 
-  Future<void> sendEmail(String name, String email, String message) async {
+  Future<void> sendEmail(
+      String name, String email, String message, context) async {
     var serviceId = dotenv.env['EMAILJS_SERVICE_ID'];
     var templateId = dotenv.env['EMAILJS_TEMPLATE_ID'];
     var publicKey = dotenv.env['EMAILJS_PUBLIC_KEY'];
@@ -44,11 +45,8 @@ class ContactDialogState extends State<ContactDialog> {
     } catch (error) {
       debugPrint('EMAIL DENIED!');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content:
-                // AP20, once issue is fixed then comment back in
-                // Text('Failed to send email, serviceId: $serviceId: $error')),
-                Text('Email sent successfully')),
+        SnackBar(content: Text('Failed to send email, error: $error')),
+        // Text('Email sent successfully')),
       );
       debugPrint('Error: $error');
     }
@@ -116,10 +114,12 @@ class ContactDialogState extends State<ContactDialog> {
                 _nameController.text,
                 _emailController.text,
                 _messageController.text,
-              );
-
-              Get.back();
-              // .then((_) => Navigator.of(context).pop());
+                context,
+              ).then((_) {
+                if (mounted) {
+                  Get.back();
+                }
+              });
             }
           },
           child: const Text('Send'),
@@ -130,9 +130,6 @@ class ContactDialogState extends State<ContactDialog> {
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _messageController.dispose();
     super.dispose();
   }
 }

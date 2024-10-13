@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:myportfolio/pages/controller.dart';
-// import 'package:myportfolio/widgets/hoverable_image.dart';
 import 'package:portfolio/pages/controller.dart';
 import 'package:portfolio/widgets/hoverable_image.dart';
 
@@ -54,7 +52,9 @@ class ProjectDetail extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      title,
+                      title == "Flare Network API"
+                          ? "$title (Coming Soon)"
+                          : title,
                       style: GoogleFonts.titilliumWeb(
                           fontSize: 35, color: Colors.black),
                     ),
@@ -64,7 +64,6 @@ class ProjectDetail extends StatelessWidget {
                     if (gitUrl != null)
                       IconButton(
                         onPressed: () {
-                          // AP20 make this url dynamic
                           controller.goToUrl(gitUrl!);
                         },
                         icon: const FaIcon(

@@ -4,13 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ProjectTile extends StatefulWidget {
   final String imageUrl;
   final String title;
-  final String description;
+  final String projectType;
   final VoidCallback onTap;
 
   const ProjectTile({
     required this.imageUrl,
     required this.title,
-    required this.description,
+    required this.projectType,
     required this.onTap,
     super.key,
   });
@@ -88,7 +88,7 @@ class ProjectTileState extends State<ProjectTile> {
                       Row(
                         children: [
                           Text(
-                            isHovered ? "Details" : widget.description,
+                            isHovered ? "Details" : widget.projectType,
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.grey[600],

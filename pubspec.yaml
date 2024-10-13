@@ -32,8 +32,8 @@ dev_dependencies:
 flutter:
   assets:
       - assets/
+      - assets/config/.env
       - assets/coin_logo.png
-      - .env
       - assets/fonts/
       
   fonts:

@@ -76,7 +76,9 @@ class _HomeState extends State<Home> {
                       const Text(
                         "{",
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w600),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Text(
                         '  Anthony Palacios  ',
@@ -91,7 +93,9 @@ class _HomeState extends State<Home> {
                       const Text(
                         "}",
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w600),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
@@ -172,7 +176,7 @@ class _HomeState extends State<Home> {
                         IconButton(
                           onPressed: () {
                             controller.goToUrl(
-                                "https://www.linkedin.com/in/anthony-palacios-37054217a/");
+                                "https://www.linkedin.com/in/anthony-palacios");
                           },
                           icon: const FaIcon(
                             FontAwesomeIcons.linkedin,
