@@ -65,7 +65,7 @@ class _SkillTileState extends State<SkillTile> {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    widget.imagePath,
+                    "assets/${widget.imagePath}",
                     fit: BoxFit.cover,
                   ),
                   Container(
