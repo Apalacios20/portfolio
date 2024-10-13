@@ -176,7 +176,7 @@ class _HomeState extends State<Home> {
                         IconButton(
                           onPressed: () {
                             controller.goToUrl(
-                                "https://www.linkedin.com/in/anthony-palacios");
+                                "https://www.linkedin.com/in/palacios-anthony");
                           },
                           icon: const FaIcon(
                             FontAwesomeIcons.linkedin,
